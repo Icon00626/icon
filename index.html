@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SPORTZONE — Спорт дүкені</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07111f;
+    color: white;
+}
+
+/* HEADER */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 7%;
+    background: rgba(3,10,20,.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    color: #39ff72;
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+    cursor: pointer;
+}
+
+nav a:hover {
+    color: #39ff72;
+}
+
+/* HERO */
+.hero {
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    padding: 80px 8%;
+    position: relative;
+    overflow: hidden;
+    background: #07111f;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0,0,0,.88),
+        rgba(0,0,0,.45)
+    );
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 750px;
+    position: relative;
+    z-index: 2;
+}
+
+.small-title {
+    color: #39ff72;
+    font-weight: bold;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(45px,7vw,90px);
+    line-height: .95;
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    color: #39ff72;
+}
+
+.hero p {
+    color: #d7dce3;
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.button {
+    display: inline-block;
+    border: none;
+    padding: 15px 30px;
+    background: #39ff72;
+    color: #03100a;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(57,255,114,.3);
+}
+
+/* SECTIONS */
+section {
+    padding: 90px 7%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 50px;
+}
+
+/* CATEGORIES */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.category {
+    background: #0d1b2d;
+    border: 1px solid #20334b;
+    border-radius: 16px;
+    padding: 35px 20px;
+    text-align: center;
+    transition: .3s;
+}
+
+.category:hover {
+    transform: translateY(-8px);
+    border-color: #39ff72;
+}
+
+.category-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.category h3 {
+    margin-bottom: 10px;
+}
+
+.category p {
+    color: #9caabd;
+}
+
+/* PRODUCTS */
+.products {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+
+.product {
+    background: #0d1b2d;
+    border: 1px solid #20334b;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.product:hover {
+    transform: translateY(-8px);
+    border-color: #39ff72;
+}
+
+.product-picture {
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        135deg,
+        #102944,
+        #092018
+    );
+    overflow: hidden;
+}
+
+.product-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: .3s;
+}
+
+.product:hover .product-picture img {
+    transform: scale(1.08);
+}
+
+.product-picture span {
+    font-size: 110px;
+    transition: .3s;
+}
+
+.product:hover .product-picture span {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-category {
+    color: #39ff72;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.product-info h3 {
+    margin: 10px 0;
+}
+
+.product-info p {
+    color: #a5b1c2;
+    line-height: 1.5;
+    min-height: 48px;
+}
+
+.product-bottom {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price {
+    color: #39ff72;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cart-button {
+    border: none;
+    background: #39ff72;
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* AUTH */
+.auth-container {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background:
+        radial-gradient(
+            circle at top,
+            #164f2c,
+            transparent 40%
+        ),
+        #06101c;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 450px;
+    background: #0d1b2d;
+    border: 1px solid #29405a;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.auth-box label {
+    display: block;
+    margin: 15px 0 7px;
+    color: #ddd;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #30445c;
+    background: #07111f;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+.auth-box input:focus {
+    border-color: #39ff72;
+}
+
+.auth-box button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.auth-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #39ff72;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ALERT */
+.alert {
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.error {
+    background: rgba(255,50,50,.15);
+    color: #ff7777;
+}
+
+.success {
+    background: rgba(57,255,114,.12);
+    color: #39ff72;
+}
+
+/* ABOUT */
+.about {
+    background: linear-gradient(
+        135deg,
+        #07111f,
+        #0b2819
+    );
+}
+
+.about-content {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 45px;
+    margin-bottom: 25px;
+}
+
+.about p {
+    color: #b7c1ce;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* FOOTER */
+footer {
+    background: #030912;
+    padding: 40px 7%;
+    display: flex;
+    justify-content: space-between;
+    color: #8997a9;
+}
+
+footer strong {
+    color: #39ff72;
+}
+
+/* SEARCH */
+.search-box {
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 17px;
+    border-radius: 10px;
+    background: #0d1b2d;
+    border: 1px solid #30445c;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+/* CART */
+.cart-page {
+    min-height: 70vh;
+}
+
+.cart-list {
+    max-width: 900px;
+    margin: auto;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 12px;
+    background: #0d1b2d;
+    border-radius: 10px;
+}
+
+.cart-total {
+    max-width: 900px;
+    margin: 30px auto;
+    text-align: right;
+    font-size: 25px;
+}
+
+.cart-total span {
+    color: #39ff72;
+}
+
+/* MOBILE */
+@media(max-width:1000px) {
+    .products {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .categories {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 600px;
+        padding: 60px 7%;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .categories {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    section {
+        padding: 65px 6%;
+    }
+
+    .auth-box {
+        padding: 25px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
+@media(max-width:400px) {
+    .hero h1 {
+        font-size: 40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+    <div class="logo">
+        🏆 SPORTZONE
+    </div>
+
+    <nav>
+        <a onclick="showPage('home')">
+            Басты бет
+        </a>
+
+        <a onclick="showPage('products')">
+            Тауарлар
+        </a>
+
+        <a onclick="showPage('cart')">
+            🛒 Себет
+            <span id="cartCount">0</span>
+        </a>
+
+        <span id="userMenu"></span>
+    </nav>
+
+</header>
+
+
+<!-- MAIN -->
+<main id="mainContent"></main>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div>
+        <strong>
+            🏆 SPORTZONE
+        </strong>
+
+        <br><br>
+
+        Спорт — сенің жаңа күшің!
+    </div>
+
+    <div>
+        © 2026 SPORTZONE
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+const products = [
+
+    {
+        id: 1,
+        name: "Футбол добы",
+        category: "Футбол",
+        description: "Кәсіби жаттығуларға арналған футбол добы",
+        price: 18900,
+        emoji: "⚽",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        id: 2,
+        name: "Баскетбол добы",
+        category: "Баскетбол",
+        description: "Жоғары сапалы баскетбол добы",
+        price: 21900,
+        emoji: "🏀",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        id: 3,
+        name: "Спорттық аяқ киім",
+        category: "Аяқ киім",
+        description: "Жүгіруге арналған жеңіл спорттық аяқ киім",
+        price: 35900,
+        emoji: "👟",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        id: 4,
+        name: "Футбол формасы",
+        category: "Киім",
+        description: "Жаттығу және ойынға арналған спорттық форма",
+        price: 24900,
+        emoji: "👕",
+        image: "https://avatars.mds.yandex.net/get-mpic/19658723/2a0000019dce3253284ef552b995fc28f10d/orig"
+    },
+
+    {
+        id: 5,
+        name: "Қақпашы қолғаптары",
+        category: "Футбол",
+        description: "Кәсіби қақпашыларға арналған қолғап",
+        price: 19900,
+        emoji: "🧤",
+        image: "https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        id: 6,
+        name: "Фитнес жабдығы",
+        category: "Фитнес",
+        description: "Үй жағдайында жаттығуға арналған жабдық",
+        price: 29900,
+        emoji: "🏋️",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        id: 7,
+        name: "Спорт сөмкесі",
+        category: "Аксессуар",
+        description: "Спорттық киім мен жабдықтарға арналған сөмке",
+        price: 17900,
+        emoji: "🎒",
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        id: 8,
+        name: "Жүгіру жейдесі",
+        category: "Киім",
+        description: "Жеңіл және ыңғайлы спорттық жейде",
+        price: 14900,
+        emoji: "🏃",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80"
+    }
+
+];
+
+
+/* =====================================================
+   CART
+===================================================== */
+
+let cart = JSON.parse(
+    localStorage.getItem("sportzone_cart")
+) || [];
+
+
+/* =====================================================
+   USER
+===================================================== */
+
+let currentUser = JSON.parse(
+    localStorage.getItem("sportzone_user")
+) || null;
+
+
+/* =====================================================
+   FORMAT PRICE
+===================================================== */
+
+function formatPrice(price) {
+    return Number(price).toLocaleString("kk-KZ") + " ₸";
+}
+
+
+/* =====================================================
+   UPDATE CART COUNT
+===================================================== */
+
+function updateCartCount() {
+
+    const counter =
+        document.getElementById("cartCount");
+
+    if (counter) {
+        counter.innerText = cart.length;
+    }
+}
+
+
+/* =====================================================
+   SAVE CART
+===================================================== */
+
+function saveCart() {
+
+    localStorage.setItem(
+        "sportzone_cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+}
+
+
+/* =====================================================
+   ADD TO CART
+===================================================== */
+
+function addToCart(id) {
+
+    const product =
+        products.find(p => p.id === id);
+
+    if (!product) return;
+
+    cart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price
+    });
+
+    saveCart();
+
+    alert(
+        "✅ " +
+        product.name +
+        " себетке қосылды!"
+    );
+}
+
+
+/* =====================================================
+   REMOVE FROM CART
+===================================================== */
+
+function removeCart(index) {
+
+    cart.splice(index, 1);
+
+    saveCart();
+
+    showPage("cart");
+}
+
+
+/* =====================================================
+   CLEAR CART
+===================================================== */
+
+function clearCart() {
+
+    if (cart.length === 0) {
+        return;
+    }
+
+    cart = [];
+
+    localStorage.removeItem(
+        "sportzone_cart"
+    );
+
+    updateCartCount();
+
+    showPage("cart");
+}
+
+
+/* =====================================================
+   HOME PAGE
+===================================================== */
+
+function homePage() {
+
+    return `
+
+    <section class="hero">
+
+        <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+        >
+            <source
+                src="sport-video.mp4"
+                type="video/mp4"
+            >
+
+            Сіздің браузеріңіз видео элементін
+            қолдамайды.
+        </video>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                SPORT • POWER • VICTORY
+            </div>
+
+            <h1>
+                Спортпен бірге
+                <span>
+                    биіктерге жет!
+                </span>
+            </h1>
+
+            <p>
+                SPORTZONE — спорттық киімдер,
+                аяқ киімдер және жабдықтар дүкені.
+                Жаттығуыңды жаңа деңгейге көтер!
+            </p>
+
+            <button
+                class="button"
+                onclick="showPage('products')"
+            >
+                🛍 Тауарларды көру
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section>
+
+        <h2 class="section-title">
+            🏆 Спорт бағыттары
+        </h2>
+
+        <div class="categories">
+
+            <div class="category">
+
+                <div class="category-icon">
+                    ⚽
+                </div>
+
+                <h3>
+                    Футбол
+                </h3>
+
+                <p>
+                    Доптар, форма,
+                    қолғаптар
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    🏀
+                </div>
+
+                <h3>
+                    Баскетбол
+                </h3>
+
+                <p>
+                    Доптар және
+                    спорттық киімдер
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    🏃
+                </div>
+
+                <h3>
+                    Фитнес
+                </h3>
+
+                <p>
+                    Жаттығу жабдықтары
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    👟
+                </div>
+
+                <h3>
+                    Жүгіру
+                </h3>
+
+                <p>
+                    Жеңіл спорттық
+                    аяқ киімдер
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="about">
+
+        <div class="about-content">
+
+            <h2>
+                SPORTZONE
+            </h2>
+
+            <p>
+                Біз спортпен айналысатын
+                адамдарға арналған заманауи
+                интернет дүкенбіз.
+            </p>
+
+            <p>
+                Футбол, баскетбол, фитнес,
+                жүгіру және басқа спорт
+                түрлеріне арналған тауарлар.
+            </p>
+
+            <br>
+
+            <button
+                class="button"
+                onclick="showPage('products')"
+            >
+                Дүкенге өту
+            </button>
+
+        </div>
+
+    </section>
+
+    `;
+}
+
+
+/* =====================================================
+   PRODUCTS PAGE
+===================================================== */
+
+function productsPage() {
+
+    return `
+
+    <section>
+
+        <h1 class="section-title">
+            🛍 Спорттық тауарлар
+        </h1>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="🔎 Тауар іздеу..."
+                oninput="searchProducts()"
+            >
+
+        </div>
+
+        <div
+            class="products"
+            id="products"
+        >
+
+            ${products.map(product => `
+
+                <div
+                    class="product"
+                    data-name="${product.name.toLowerCase()}"
+                >
+
+                    <div class="product-picture">
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            loading="lazy"
+                            onerror="
+                                this.style.display='none';
+                                this.nextElementSibling.style.display='block';
+                            "
+                        >
+
+                        <span style="display:none">
+                            ${product.emoji}
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <div class="product-category">
+                            ${product.category}
+                        </div>
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+                        <p>
+                            ${product.description}
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div class="price">
+                                ${formatPrice(product.price)}
+                            </div>
+
+                            <button
+                                class="cart-button"
+                                onclick="addToCart(${product.id})"
+                            >
+                                🛒
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+
+    </section>
+
+    `;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchProducts() {
+
+    const input =
+        document.getElementById("search");
+
+    if (!input) return;
+
+    const value =
+        input.value.toLowerCase();
+
+    document
+        .querySelectorAll(".product")
+        .forEach(product => {
+
+            const name =
+                product.dataset.name;
+
+            product.style.display =
+                name.includes(value)
+                    ? "block"
+                    : "none";
+        });
+}
+
+
+/* =====================================================
+   CART PAGE
+===================================================== */
+
+function cartPage() {
+
+    if (cart.length === 0) {
+
+        return `
+
+        <section class="cart-page">
+
+            <h1 class="section-title">
+                🛒 Менің себетім
+            </h1>
+
+            <div class="cart-list">
+
+                <div class="cart-item">
+
+                    🛒 Себет бос.
+
+                </div>
+
+            </div>
+
+        </section>
+
+        `;
+    }
+
+    let total = 0;
+
+    const items = cart.map(
+        (item, index) => {
+
+            total += Number(item.price);
+
+            return `
+
+            <div class="cart-item">
+
+                <div>
+
+                    <strong>
+                        ${item.name}
+                    </strong>
+
+                    <br>
+
+                    <span style="color:#39ff72;">
+                        ${formatPrice(item.price)}
+                    </span>
+
+                </div>
+
+                <button
+                    class="cart-button"
+                    onclick="removeCart(${index})"
+                >
+                    ❌
+                </button>
+
+            </div>
+
+            `;
+        }
+    ).join("");
+
+    return `
+
+    <section class="cart-page">
+
+        <h1 class="section-title">
+            🛒 Менің себетім
+        </h1>
+
+        <div class="cart-list">
+
+            ${items}
+
+        </div>
+
+        <div class="cart-total">
+
+            Жалпы:
+
+            <span>
+                ${formatPrice(total)}
+            </span>
+
+            <br><br>
+
+            <button
+                class="button"
+                onclick="clearCart()"
+            >
+                Себетті тазалау
+            </button>
+
+        </div>
+
+    </section>
+
+    `;
+}
+
+
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
+
+function loginPage(message = "") {
+
+    return `
+
+    <div class="auth-container">
+
+        <div class="auth-box">
+
+            <h2>
+                🏆 SPORTZONE
+            </h2>
+
+            <h2>
+                Жүйеге кіру
+            </h2>
+
+            <div
+                id="loginMessage"
+                class="alert"
+                style="display:${message ? "block" : "none"}"
+            >
+                ${message}
+            </div>
+
+            <form onsubmit="login(event)">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="example@gmail.com"
+                    required
+                >
+
+                <label>
+                    Пароль
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Пароль"
+                    required
+                >
+
+                <button
+                    class="button"
+                    type="submit"
+                >
+                    Кіру
+                </button>
+
+            </form>
+
+            <a
+                class="auth-link"
+                onclick="showPage('register')"
+            >
+                Аккаунтың жоқ па? Тіркелу
+            </a>
+
+        </div>
+
+    </div>
+
+    `;
+}
+
+
+/* =====================================================
+   REGISTER PAGE
+===================================================== */
+
+function registerPage(message = "") {
+
+    return `
+
+    <div class="auth-container">
+
+        <div class="auth-box">
+
+            <h2>
+                🏆 SPORTZONE
+            </h2>
+
+            <h2>
+                Тіркелу
+            </h2>
+
+            <div
+                id="registerMessage"
+                class="alert"
+                style="display:${message ? "block" : "none"}"
+            >
+                ${message}
+            </div>
+
+            <form onsubmit="register(event)">
+
+                <label>
+                    Аты-жөніңіз
+                </label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Аты-жөніңіз"
+                    required
+                >
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="example@gmail.com"
+                    required
+                >
+
+                <label>
+                    Пароль
+                </label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Кемінде 6 таңба"
+                    minlength="6"
+                    required
+                >
+
+                <button
+                    class="button"
+                    type="submit"
+                >
+                    Тіркелу
+                </button>
+
+            </form>
+
+            <a
+                class="auth-link"
+                onclick="showPage('login')"
+            >
+                Аккаунтың бар ма? Кіру
+            </a>
+
+        </div>
+
+    </div>
+
+    `;
+}
+
+
+/* =====================================================
+   ACCOUNT PAGE
+===================================================== */
+
+function accountPage() {
+
+    if (!currentUser) {
+        showPage("login");
+        return "";
+    }
+
+    return `
+
+    <section>
+
+        <div
+            class="auth-box"
+            style="margin:auto;"
+        >
+
+            <h2>
+                👤 Менің аккаунтым
+            </h2>
+
+            <p
+                style="
+                    text-align:center;
+                    color:#aaa;
+                    margin:20px;
+                "
+            >
+
+                Қош келдіңіз,
+
+                <strong
+                    style="color:#39ff72;"
+                >
+                    ${currentUser.name}
+                </strong>
+
+            </p>
+
+            <p
+                style="
+                    text-align:center;
+                    color:#aaa;
+                    margin:20px;
+                "
+            >
+                ${currentUser.email}
+            </p>
+
+            <button
+                class="button"
+                style="
+                    width:100%;
+                "
+                onclick="logout()"
+            >
+                Шығу
+            </button>
+
+        </div>
+
+    </section>
+
+    `;
+}
+
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+function register(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById(
+            "registerName"
+        ).value.trim();
+
+    const email =
+        document.getElementById(
+            "registerEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+    if (password.length < 6) {
+
+        alert(
+            "Пароль кемінде 6 таңба болуы керек!"
+        );
+
+        return;
+    }
+
+    let users =
+        JSON.parse(
+            localStorage.getItem(
+                "sportzone_users"
+            )
+        ) || [];
+
+    const exists =
+        users.some(
+            user =>
+                user.email.toLowerCase() ===
+                email.toLowerCase()
+        );
+
+    if (exists) {
+
+        alert(
+            "Бұл email бұрын тіркелген!"
+        );
+
+        return;
+    }
+
+    users.push({
+        name: name,
+        email: email,
+        password: password
+    });
+
+    localStorage.setItem(
+        "sportzone_users",
+        JSON.stringify(users)
+    );
+
+    alert(
+        "✅ Тіркелу сәтті өтті! Енді кіріңіз."
+    );
+
+    showPage("login");
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function login(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+    const users =
+        JSON.parse(
+            localStorage.getItem(
+                "sportzone_users"
+            )
+        ) || [];
+
+    const user =
+        users.find(
+            u =>
+                u.email.toLowerCase() ===
+                email.toLowerCase() &&
+                u.password === password
+        );
+
+    if (!user) {
+
+        alert(
+            "Email немесе пароль дұрыс емес!"
+        );
+
+        return;
+    }
+
+    currentUser = {
+        name: user.name,
+        email: user.email
+    };
+
+    localStorage.setItem(
+        "sportzone_user",
+        JSON.stringify(currentUser)
+    );
+
+    updateUserMenu();
+
+    alert(
+        "✅ Қош келдіңіз, " +
+        user.name + "!"
+    );
+
+    showPage("home");
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout() {
+
+    currentUser = null;
+
+    localStorage.removeItem(
+        "sportzone_user"
+    );
+
+    updateUserMenu();
+
+    showPage("home");
+}
+
+
+/* =====================================================
+   USER MENU
+===================================================== */
+
+function updateUserMenu() {
+
+    const menu =
+        document.getElementById(
+            "userMenu"
+        );
+
+    if (!menu) return;
+
+    if (currentUser) {
+
+        menu.innerHTML = `
+
+            <a onclick="showPage('account')">
+                👤 ${currentUser.name}
+            </a>
+
+            <a onclick="logout()">
+                Шығу
+            </a>
+
+        `;
+
+    } else {
+
+        menu.innerHTML = `
+
+            <a onclick="showPage('login')">
+                Кіру
+            </a>
+
+        `;
+    }
+}
+
+
+/* =====================================================
+   SHOW PAGE
+===================================================== */
+
+function showPage(page) {
+
+    const main =
+        document.getElementById(
+            "mainContent"
+        );
+
+    if (page === "home") {
+
+        main.innerHTML =
+            homePage();
+
+    } else if (page === "products") {
+
+        main.innerHTML =
+            productsPage();
+
+    } else if (page === "cart") {
+
+        main.innerHTML =
+            cartPage();
+
+    } else if (page === "login") {
+
+        main.innerHTML =
+            loginPage();
+
+    } else if (page === "register") {
+
+        main.innerHTML =
+            registerPage();
+
+    } else if (page === "account") {
+
+        main.innerHTML =
+            accountPage();
+    }
+
+    updateCartCount();
+    updateUserMenu();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+updateCartCount();
+
+updateUserMenu();
+
+showPage("home");
+
+</script>
+
+</body>
+</html>
